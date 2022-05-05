@@ -8,7 +8,7 @@ class User extends AbstractController
 {
     public function actionIndex()
     {
-        // TODO: Implement actionIndex() method.
+        echo __CLASS__ . ' method: ' . __METHOD__;
     }
 
     public function actionLogin()

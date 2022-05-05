@@ -5,34 +5,51 @@ namespace Core;
 
 class Route
 {
-    private $controllerName;
+    private $controllerName = 'blog'; //TODO: сделать базовый контроллер из конфига
     private $actionName;
     private $processed = false;
     private $routes;
 
+    /**
+     * @return void
+     * @throws RouteException
+     */
     private function process()
     {
-        $parts = parse_url($_SERVER['REQUEST_URI']);
-        $path = $parts['path'];
+        if (!$this->processed) {
+            $parts = parse_url($_SERVER['REQUEST_URI']);
+            $path = $parts['path'];
 
-        if (($route = $this->routes[$path] ?? null) !== null) {
-            $this->controllerName = $route[0];
-            $this->actionName = $route[1];
-        } else {
-            $parts = explode('/', $path);
-            $this->controllerName = '\\App\\Controller\\' . ucfirst(strtolower($parts[1]));
-            if (!empty($parts[2])) {
-                $this->actionName = 'action' . ucfirst(strtolower($parts[2]));
+            if (($route = $this->routes[$path] ?? null) !== null) {
+                $this->controllerName = $route[0];
+                $this->actionName = $route[1];
             } else {
-                $this->actionName = 'actionIndex';
-            }
+                $parts = explode('/', $path);
+                if (!empty($parts[1])) {
+                    $this->controllerName = '\\App\\Controller\\' . ucfirst(strtolower($parts[1]));
+                } else {
+                    $this->controllerName = '\\App\\Controller\\' . ucfirst(strtolower($this->controllerName));
+                }
+                if (!empty($parts[2])) {
+                    $this->actionName = 'action' . ucfirst(strtolower($parts[2]));
+                } else {
+                    $this->actionName = 'actionIndex';
+                }
 
-            if (!class_exists($this->controllerName)) {
-                throw new RouteException($this->controllerName .  ' - controller not found');
+                if (!class_exists($this->controllerName)) {
+                    throw new RouteException($this->controllerName .  ' - controller not found');
+                }
             }
+            $this->processed = true;
         }
     }
 
+    /**
+     * @param $path
+     * @param $controllerName
+     * @param $actionName
+     * @return void
+     */
     public function addRoute($path, $controllerName, $actionName)
     {
         $this->routes[$path] = [
@@ -41,6 +58,10 @@ class Route
         ];
     }
 
+    /**
+     * @return string
+     * @throws RouteException
+     */
     public function getControllerName(): string
     {
         if (!$this->processed) {
@@ -49,6 +70,10 @@ class Route
         return $this->controllerName;
     }
 
+    /**
+     * @return string
+     * @throws RouteException
+     */
     public function getActionName(): string
     {
         if (!$this->processed) {
