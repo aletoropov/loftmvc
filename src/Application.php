@@ -21,11 +21,19 @@ class Application
      */
     public function run()
     {
-        $this->addRoutes();
-
-        $this->initController();
-
-        $this->initAction();
+        try {
+            $this->addRoutes();
+            $this->initController();
+            $this->initAction();
+        } catch (RedirectException $ex) {
+            http_response_code(302);
+            header('Location: ' . $ex->getUrl());
+            exit();
+        } catch (RouteException $ex) {
+            http_response_code(404);
+            echo $ex->getMessage();
+            exit();
+        }
     }
 
     /**
