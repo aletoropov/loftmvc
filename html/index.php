@@ -1,7 +1,7 @@
 <?php
 include "../vendor/autoload.php";
 
-use Core\Application;
+use App\Controller\User;
 
 $parts = parse_url($_SERVER['REQUEST_URI']);
 
@@ -10,7 +10,8 @@ switch ($parts['path']) {
         echo 'index';
         break;
     case '/user/login':
-        echo 'user login';
+        $user = new User();
+        $user->actionLogin();
         break;
     case '/user/register':
         echo 'user/register';
