@@ -6,8 +6,9 @@ use Core\AbstractController;
 
 class Blog extends AbstractController
 {
-    public function indexAction()
+    public function actionIndex()
     {
         echo 'this is blog controller';
+        echo __CLASS__ . ' method: ' . __METHOD__;;
     }
 }
