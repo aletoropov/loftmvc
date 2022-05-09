@@ -18,6 +18,10 @@ class User extends AbstractController
 
     public function actionRegister()
     {
-        echo __CLASS__ . ' method: ' . __METHOD__;
+        $data = [
+            'content' => 'register tpl',
+            'str' => 'Hello',
+        ];
+        echo $this->view->render('User/register', $data);
     }
 }

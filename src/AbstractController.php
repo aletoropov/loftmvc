@@ -5,6 +5,17 @@ namespace Core;
 
 abstract class AbstractController
 {
+    /** @var View */
+    protected View $view;
+
+    /**
+     * @param View $view
+     */
+    public function setView(View $view): void
+    {
+        $this->view = $view;
+    }
+
     abstract function actionIndex();
 
     /**

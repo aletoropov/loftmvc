@@ -4,8 +4,6 @@ require_once ROOT_DIR . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . '
 
 use Core\Application;
 
-$parts = parse_url($_SERVER['REQUEST_URI']);
-
 $app = new Application();
 
 try {

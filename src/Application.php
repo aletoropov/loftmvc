@@ -24,7 +24,12 @@ class Application
         try {
             $this->addRoutes();
             $this->initController();
+
+            $view = new View();
+            $this->controller->setView($view);
+
             $this->initAction();
+
         } catch (RedirectException $ex) {
             http_response_code(302);
             header('Location: ' . $ex->getUrl());
