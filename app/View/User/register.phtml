@@ -1,3 +1,38 @@
-<?=$this->content?>
+<div>
+    <h2>Регистрация</h2>
+    <form action="/user/register" method="post">
+        <p>
+            Введите имя:
+            <input name="name" type="text" placeholder="Введите имя">
+        </p>
+        <p>
+            Введите пароль:
+            <input name="password" type="password" placeholder="Введите пароль">
+        </p>
+        <p>
+            Повторите пароль:
+            <input name="password2" type="password">
+        </p>
+        <input type="hidden" name="gender" value="1">
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+</div>
 
-<h1><?=$this->str?></h1>
+<div>
+    <h2>Логин</h2>
+    <form action="/user/login">
+        <p>
+            Введите имя:
+            <input name="name" type="text" placeholder="Введите имя">
+        </p>
+        <p>
+            Введите пароль:
+            <input name="password" type="password" placeholder="Введите пароль">
+        </p>
+        <input type="submit" value="Войти">
+    </form>
+</div>
+
+<?php if($this->error): ?>
+    <b><?=$this->error?></b>
+<?php endif; ?>
