@@ -5,13 +5,18 @@ namespace Core;
 class View
 {
     private string $tplPath = '';
-    private $data = [];
+    private array $data = [];
 
     public function __construct()
     {
         $this->tplPath = TPL_DIR;
     }
 
+    /**
+     * @param string $tpl
+     * @param array $data
+     * @return string
+     */
     public function render(string $tpl, array $data = []): string
     {
         $this->data += $data;
