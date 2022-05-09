@@ -22,6 +22,7 @@ class Application
     public function run()
     {
         try {
+            session_start();
             $this->addRoutes();
             $this->initController();
 
