@@ -16,9 +16,6 @@ class Application
         $this->route = new Route();
     }
 
-    /**
-     * @throws RouteException
-     */
     public function run()
     {
         try {
