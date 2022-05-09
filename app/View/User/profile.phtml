@@ -1,0 +1,6 @@
+<?php if ($this->user): ?>
+    <h1><?=$this->user->getName();?></h1>
+    <p><?=$this->user->getGenderString();?></p>
+<?php else: ?>
+    <b>Пользователья не найден</b>
+<?php endif; ?>
