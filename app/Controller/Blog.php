@@ -11,8 +11,8 @@ class Blog extends AbstractController
      */
     public function actionIndex()
     {
-        if ($_GET['redirect']) {
-            $this->redirect('/user/register');
+        if (!$this->user) {
+            $this->redirect('user/register');
         }
         echo __CLASS__ . ' method: ' . __METHOD__;;
     }

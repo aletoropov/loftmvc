@@ -22,6 +22,7 @@ class Application
             session_start();
             $this->addRoutes();
             $this->initController();
+            $this->initUser();
 
             $view = new View();
             $this->controller->setView($view);
@@ -75,5 +76,16 @@ class Application
             throw new RouteException($actionName . ' - action not found! in class: ' . get_class($this->controller));
         }
         $this->controller->$actionName();
+    }
+
+    private function initUser()
+    {
+        $id = $_SESSION['id'] ?? null;
+        if ($id) {
+            $user = \App\Model\User::getById($id);
+            if ($user) {
+                $this->controller->setUser($user);
+            }
+        }
     }
 }

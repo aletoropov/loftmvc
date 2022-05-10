@@ -29,6 +29,11 @@ class View
         return ob_get_clean();
     }
 
+    public function assign(string $name, $value)
+    {
+        $this->data[$name] = $value;
+    }
+
     public function __get($varName)
     {
         return $this->data[$varName] ?? null;
