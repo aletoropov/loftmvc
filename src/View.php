@@ -16,6 +16,7 @@ class View
      * @param string $tpl
      * @param array $data
      * @return string
+     * @throws ViewException
      */
     public function render(string $tpl, array $data = []): string
     {
@@ -24,7 +25,7 @@ class View
         if (file_exists($this->tplPath . DIRECTORY_SEPARATOR . $tpl . '.phtml')) {
             require_once($this->tplPath . DIRECTORY_SEPARATOR . $tpl . '.phtml');
         } else {
-            // TODO: кинуть исключение, если файл шаблона не найден
+            throw new ViewException($tpl . ' - template not found!');
         }
         return ob_get_clean();
     }
