@@ -3,6 +3,8 @@
 const ROOT_DIR = __DIR__;
 //директория с шаблонами
 const TPL_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'View' . DIRECTORY_SEPARATOR;
+//базовый контроллер приложения
+const BASE_CONTROLLER = 'blog';
 
 const DB_HOST = 'localhost';
 const DB_NAME = 'loftmvc';

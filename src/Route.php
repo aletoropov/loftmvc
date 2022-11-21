@@ -5,7 +5,7 @@ namespace Core;
 
 class Route
 {
-    private $controllerName = 'blog'; //TODO: сделать базовый контроллер из конфига
+    private $controllerName = BASE_CONTROLLER;
     private $actionName;
     private $processed = false;
     private $routes;
