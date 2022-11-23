@@ -5,16 +5,16 @@ namespace Core;
 
 class Route
 {
-    private $controllerName = BASE_CONTROLLER;
-    private $actionName;
-    private $processed = false;
-    private $routes;
+    private string $controllerName = BASE_CONTROLLER;
+    private string $actionName;
+    private bool $processed = false;
+    private array $routes;
 
     /**
      * @return void
      * @throws RouteException
      */
-    private function process()
+    private function process(): void
     {
         if (!$this->processed) {
             $parts = parse_url($_SERVER['REQUEST_URI']);
@@ -46,11 +46,11 @@ class Route
 
     /**
      * @param $path
-     * @param $controllerName
-     * @param $actionName
+     * @param string $controllerName
+     * @param string $actionName
      * @return void
      */
-    public function addRoute($path, $controllerName, $actionName)
+    public function addRoute($path, string $controllerName, string $actionName): void
     {
         $this->routes[$path] = [
             $controllerName,
