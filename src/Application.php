@@ -16,6 +16,9 @@ class Application
         $this->route = new Route();
     }
 
+    /**
+     * @return void
+     */
     public function run()
     {
         try {
@@ -35,8 +38,7 @@ class Application
             exit();
         } catch (RouteException $ex) {
             http_response_code(404);
-            echo $ex->getMessage();
-            exit();
+            exit($ex->getMessage());
         }
     }
 
