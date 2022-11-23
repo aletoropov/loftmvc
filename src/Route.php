@@ -5,12 +5,34 @@ namespace Core;
 
 class Route
 {
+    /**
+     * Контроллер по умолчанию
+     *
+     * @var string
+     */
     private string $controllerName = BASE_CONTROLLER;
+    /**
+     * Метод контроллера
+     *
+     * @var string
+     */
     private string $actionName;
+    /**
+     * Автоматический роутинг
+     *
+     * @var bool
+     */
     private bool $processed = false;
+    /**
+     * Контроллер и метод контроллера
+     *
+     * @var array
+     */
     private array $routes;
 
     /**
+     * Автоматичечкий роутинг, ищет указанный контроллер и метод в нем по URI
+     *
      * @return void
      * @throws RouteException
      */
@@ -45,6 +67,8 @@ class Route
     }
 
     /**
+     * Добавляем роут
+     *
      * @param $path
      * @param string $controllerName
      * @param string $actionName
@@ -59,6 +83,8 @@ class Route
     }
 
     /**
+     * Возвращает имя контроллера
+     *
      * @return string
      * @throws RouteException
      */
@@ -71,6 +97,8 @@ class Route
     }
 
     /**
+     * Возвращает имя метода контроллера
+     *
      * @return string
      * @throws RouteException
      */
