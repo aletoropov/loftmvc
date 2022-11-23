@@ -48,7 +48,7 @@ class Db
 
     public function fetchAll(string $query, $_method, array $params = [])
     {
-        $t = microtime(true);
+        $time = microtime(true);
         $prepared = $this->getConnection()->prepare($query);
 
         $ret = $prepared->execute($params);
@@ -61,7 +61,7 @@ class Db
 
         $data = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         $affectedRows = $prepared->rowCount();
-        $this->log[] = [$query, microtime(true) - $t, $_method, $affectedRows];
+        $this->log[] = [$query, microtime(true) - $time, $_method, $affectedRows];
 
         return $data;
     }
