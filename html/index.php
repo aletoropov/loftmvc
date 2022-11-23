@@ -9,5 +9,5 @@ $app = new Application();
 try {
     $app->run();
 } catch (\Core\RouteException $e) {
-    echo $e->getMessage();
+    exit($e->getMessage());
 }
