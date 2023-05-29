@@ -14,8 +14,8 @@ class User extends AbstractController
 
     public function actionLogin()
     {
-        $name = trim(filter_input(INPUT_POST, 'name'));
-        $password = trim(filter_input(INPUT_POST, 'password'));
+        $name = trim((string) filter_input(INPUT_POST, 'name'));
+        $password = trim((string) filter_input(INPUT_POST, 'password'));
 
         $user = UserModel::getByName($name);
         if (!$user) {
