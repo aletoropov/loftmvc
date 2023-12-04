@@ -1,12 +1,12 @@
 <?php
 namespace Core;
 
-class Db
+class Db extends \PDO
 {
     /** @var \PDO */
-    private $pdo;
-    private $log = [];
-    private static $instance;
+    private \PDO $pdo;
+    private array $log = [];
+    private static Db $instance;
 
     private function __construct()
     {
@@ -25,7 +25,7 @@ class Db
         return self::$instance;
     }
 
-    private function getConnection()
+    private function getConnection(): \PDO
     {
         $host = DB_HOST;
         $dbName = DB_NAME;
